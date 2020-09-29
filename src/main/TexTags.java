@@ -1,13 +1,17 @@
+package main;
+
 public class TexTags {
     private String begin;
     private String end;
+
     public TexTags() {
-        begin="";
-        end="";
+        begin = "";
+        end = "";
     }
+
     public TexTags(String begin, String end) {
-        this.begin=begin;
-        this.end=end;
+        this.begin = begin;
+        this.end = end;
     }
 
     public String getBegin() {

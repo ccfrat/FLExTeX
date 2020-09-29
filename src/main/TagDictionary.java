@@ -1,9 +1,11 @@
+package main;
+
 import java.util.HashMap;
 
 public class TagDictionary {
     static HashMap<String, TexTags> tags;
 
-    TagDictionary() {
+    public TagDictionary() {
         tags = new HashMap<>();
         //new word
         tags.put("mainheadword", new TexTags("\n\\par\n\\textbf{", "} "));
@@ -16,7 +18,7 @@ public class TagDictionary {
         //numbered entry for different uses
         tags.put("sensenumber", new TexTags("\\textbf{", ")} "));
         //subentry/derivative - no indent
-        tags.put("subentry mainentrysubentry", new TexTags("\n\\\\\n"," "));
+        tags.put("subentry mainentrysubentry", new TexTags("\n\\\\\n", " "));
         //alternate form type
         tags.put("complexformtype", new TexTags("\\textit{", "} "));
         //bolded word with entry
@@ -62,17 +64,17 @@ public class TagDictionary {
             int firstQuote = xml.indexOf('\"') + 1;
             int secondQuote = xml.indexOf('\"', firstQuote + 1);
             int firstIndex = xml.indexOf("<") + 1;
-            out = xml.substring(firstIndex, secondQuote+1);
-        } else if(xml.contains("<")){
-            out = xml.substring(xml.indexOf('<')+1, xml.indexOf('>'));
+            out = xml.substring(firstIndex, secondQuote + 1);
+        } else if (xml.contains("<")) {
+            out = xml.substring(xml.indexOf('<') + 1, xml.indexOf('>'));
         }
         return out;
     }
 
     static boolean isTag(String text) {
-        if(!text.contains("<")) return false;
-        int finalChar = text.length()-1;
-        if(!(text.charAt(finalChar)=='\"' || text.charAt(finalChar)=='?')) return false;
+        if (!text.contains("<")) return false;
+        int finalChar = text.length() - 1;
+        if (!(text.charAt(finalChar) == '\"' || text.charAt(finalChar) == '?')) return false;
         else return true;
     }
 
