@@ -31,7 +31,7 @@ public class Start extends Application {
                             "FLEx sometimes exports an XML file with \n" +
                             "markup declarations that give this program \n" +
                             "trouble. Try deleting the stuff in the second \n" +
-                            "set of brackets, from \"<!DOCTYPE\" \n all \n" +
+                            "set of brackets, from \"<!DOCTYPE\" all \n" +
                             "the way through the following \">\" and try again.");
         }
         catch (Exception e) {
