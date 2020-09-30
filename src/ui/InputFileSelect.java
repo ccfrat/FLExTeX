@@ -14,7 +14,8 @@ public class InputFileSelect extends JFileChooser {
     class XmlFilter extends FileFilter {
         @Override
         public boolean accept(File f) {
-            return f.getName().toLowerCase().endsWith(".xml");
+            if (f.getName().toLowerCase().endsWith(".xml")) return true;
+            else return f.isDirectory();
         }
 
         @Override

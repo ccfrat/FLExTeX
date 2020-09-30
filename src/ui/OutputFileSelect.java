@@ -9,6 +9,7 @@ public class OutputFileSelect extends JFileChooser {
     public OutputFileSelect() {
         this.setFileFilter(new TexFilter());
         this.setAcceptAllFileFilterUsed(false);
+        this.setFileSelectionMode(FILES_ONLY);
     }
 
     @Override
@@ -17,7 +18,7 @@ public class OutputFileSelect extends JFileChooser {
             File file = getSelectedFile();
 
             if (!file.getName().toLowerCase().endsWith(".tex")) {
-                file = new File(file.getName() + ".tex");
+                file = new File(file.getPath() + ".tex");
                 setSelectedFile(file);
             }
 
@@ -29,13 +30,16 @@ public class OutputFileSelect extends JFileChooser {
                         super.approveSelection();
                         return;
                     case JOptionPane.NO_OPTION:
-                        cancelSelection();
+                        super.cancelSelection();
+                        setSelectedFile(null);
                         return;
                     case JOptionPane.CLOSED_OPTION:
-                        cancelSelection();
+                        super.cancelSelection();
+                        setSelectedFile(null);
                         return;
                     case JOptionPane.CANCEL_OPTION:
-                        cancelSelection();
+                        super.cancelSelection();
+                        setSelectedFile(null);
                         return;
                 }
             } else {
@@ -47,8 +51,8 @@ public class OutputFileSelect extends JFileChooser {
     class TexFilter extends FileFilter {
         @Override
         public boolean accept(File f) {
-            return f.getName().toLowerCase().endsWith(".tex") || f.isDirectory();
-
+            if(f.getName().toLowerCase().endsWith(".tex")) return true;
+            else return f.isDirectory();
         }
 
         @Override
